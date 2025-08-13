@@ -1,5 +1,5 @@
 class mem_transaction extends uvm_sequence_item;
-    `uvm_object_utils(mem_transaction);
+    `uvm_object_utils(mem_transaction)
 
     rand logic       mem_sel_en;
     rand logic [7:0] mem_addr;
