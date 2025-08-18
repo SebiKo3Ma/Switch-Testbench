@@ -3,5 +3,5 @@ class output_sequencer extends uvm_sequencer #(output_transaction);
 
     function new(string name, uvm_object parent)
         super.new(name, parent);
-    endfunction
+    endfunction : new
 endclass

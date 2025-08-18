@@ -1,7 +1,7 @@
-class mem_sequencer extends uvm_sequencer;
+class mem_sequencer extends uvm_sequencer #(mem_transaction);
     `uvm_component_utils(mem_sequencer)
 
     function new(string name, uvm_object parent)
         super.new(name, parent);
-    endfunction
+    endfunction : new
 endclass
