@@ -1,4 +1,4 @@
-interface input_intf(clk_rst_intf clk_if);
+interface input_if(clk_rst_if clk_if);
     logic [7:0] data_in;        //serial 1-byte data input
     logic       sw_enable_in;   //enable signal for input
     logic       read_out;       //busy signal for output

@@ -1,4 +1,4 @@
-interface mem_intf;
+interface mem_if;
     logic       mem_sel_en;     //enable signal for memory interface
     logic [7:0] mem_addr;       //memory address of the register to be read or configured
     logic [7:0] mem_wr_data;    //address input for port configuration

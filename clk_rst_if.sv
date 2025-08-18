@@ -1,4 +1,4 @@
-interface clk_rst_intf(input clk);
+interface clk_rst_if(input clk);
     logic rst_n;
     
     modport dut_mp (input clk, rst_n);        // for DUT
