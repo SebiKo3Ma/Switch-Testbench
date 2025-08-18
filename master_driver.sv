@@ -24,17 +24,14 @@ class master_driver #(type TRANS = uvm_sequence_item, type VIF = virtual interfa
         `uvm_fatal(get_type_name(), "drive_signals() not implemented in child driver!");
     endtask : drive_signals
 
-    task reset_phase(uvm_phase phase);
-        super.reset_phase(phase);
+    task run_phase(uvm_phase phase)
+        super.run_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - RESET ---", UVM_DEBUG));
         phase.raise_objection(this);
         do_reset();
         phase.drop_objection(this);    
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - RESET ---", UVM_DEBUG));
-    endtask : reset_phase
 
-    task main_phase(uvm_phase phase)
-        super.main_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - MAIN  ---", UVM_DEBUG));
         forever begin
             seq_item_port.get_next_item(trans);
@@ -43,5 +40,5 @@ class master_driver #(type TRANS = uvm_sequence_item, type VIF = virtual interfa
             seq_item_port.item_done();
         end
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - MAIN  ---", UVM_DEBUG));
-    endtask : main_phase  
+    endtask : run_phase  
 endclass
