@@ -14,6 +14,6 @@ class mem_transaction extends uvm_sequence_item;
 
     function string toString();
         return $sformatf("%3t - mem_sel_en: %1b, mem_addr: %8b, mem_wr_data: %8b, mem_wr_rd_s: %1b, mem_rd_data: %8b, mem_ack: %1b", 
-               mem_sel_en, mem_addr, mem_wr_data, mem_wr_rd_s, mem_rd_data, mem_ack);
+               $time, mem_sel_en, mem_addr, mem_wr_data, mem_wr_rd_s, mem_rd_data, mem_ack);
     endfunction : toString
 endclass

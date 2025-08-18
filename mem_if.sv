@@ -8,12 +8,12 @@ interface mem_if(clk_rst_if clk_if);
 
     //Clocking block for the driver
     clocking drv_cb @(posedge clk_if.clk);
-        input mem_sel_en, mem_addr, mem_wr_data, mem_wr_rd_s;
+        output mem_sel_en, mem_addr, mem_wr_data, mem_wr_rd_s;
     endclocking
 
     //Clocking block for the monitor
     clocking mon_cb @(posedge clk_if.clk);
-        output mem_sel_en, mem_addr, mem_wr_data, mem_wr_rd_s, mem_rd_data, mem_ack;
+        input mem_sel_en, mem_addr, mem_wr_data, mem_wr_rd_s, mem_rd_data, mem_ack;
     endclocking
 
     modport dut_mp (input mem_sel_en, mem_addr, mem_wr_data, mem_wr_rd_s, output mem_rd_data, mem_ack); // for DUT

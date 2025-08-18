@@ -1,7 +1,17 @@
 interface clk_rst_if(input clk);
     logic rst_n;
     
-    modport dut_mp (input clk, rst_n);        // for DUT
-    modport drv_mp (input clk, output rst_n); // for TB driving
-    modport mon_mp (input clk, rst_n);        // for monitors
+    //Clocking block for the driver
+    clocking drv_cb @(posedge clk);
+        output rst_n;
+    endclocking
+
+    //Clocking block for the monitor
+    clocking mon_cb @(posedge clk);
+        input rst_n;
+    endclocking
+
+    modport dut_mp (output clk, rst_n); // for DUT
+    modport drv_mp (clocking drv_cb);   // for TB driving
+    modport mon_mp (clocking mon_cb);   // for monitors
 endinterface

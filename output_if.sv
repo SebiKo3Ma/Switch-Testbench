@@ -5,12 +5,12 @@ interface output_if(clk_rst_if clk_if);
 
     //Clocking block for the driver
     clocking drv_cb @(posedge clk_if.clk);
-        input port_read;
+        output port_read;
     endclocking
 
     //Clocking block for the monitor
     clocking mon_cb @(posedge clk_if.clk);
-        output port_out, port_ready, port_read;
+        input port_out, port_ready, port_read;
     endclocking
 
     modport dut_mp (output port_out, port_ready, input port_read); // for DUT

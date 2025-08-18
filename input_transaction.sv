@@ -10,6 +10,6 @@ class input_transaction extends uvm_sequence_item;
     endfunction : new
 
     function string toString();
-        return $sformatf("%3t - data_in: %8b, sw_enable_in: %1b, read_out: %1b", data_in, sw_enable_in, read_out);
+        return $sformatf("%3t - data_in: %8b, sw_enable_in: %1b, read_out: %1b", $time, data_in, sw_enable_in, read_out);
     endfunction : toString
 endclass
