@@ -5,6 +5,11 @@ class output_transaction extends uvm_sequence_item;
          logic       port_ready;
     rand logic       port_read;
 
-    //constructor
-    //copy function
+    function new(string name, uvm_component parent);
+        super.new(name, parent);
+    endfunction : new
+
+    function toString();
+        return $sformatf("%3t - port_out: %8b, port_ready: %1b, port_read: %1b", port_out, port_ready, port_read);
+    endfunction
 endclass
