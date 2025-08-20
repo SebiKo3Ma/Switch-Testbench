@@ -1,4 +1,4 @@
-./../source/*
+./DUT/*
 
 input_transaction.sv
 input_if.sv
