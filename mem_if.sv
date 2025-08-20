@@ -16,9 +16,6 @@ interface mem_if(clk_rst_if clk_if);
         input mem_sel_en, mem_addr, mem_wr_data, mem_wr_rd_s, mem_rd_data, mem_ack;
     endclocking
 
-    modport dut_mp (input mem_sel_en, mem_addr, mem_wr_data, mem_wr_rd_s, output mem_rd_data, mem_ack); // for DUT
-
     modport drv_mp (clocking drv_cb); // for TB driving
-
     modport mon_mp (clocking mon_cb);     // for monitors
 endinterface

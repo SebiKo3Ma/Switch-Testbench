@@ -11,7 +11,6 @@ interface clk_rst_if(input clk);
         input rst_n;
     endclocking
 
-    modport dut_mp (output clk, rst_n); // for DUT
     modport drv_mp (clocking drv_cb);   // for TB driving
     modport mon_mp (clocking mon_cb);   // for monitors
 endinterface

@@ -13,7 +13,6 @@ interface input_if(clk_rst_if clk_if);
         input data_in, sw_enable_in, read_out;
     endclocking
 
-    modport dut_mp (input data_in, sw_enable_in, output read_out); // for DUT
     modport drv_mp (clocking drv_cb);                              // for TB driving
     modport mon_mp (clocking mon_cb);                              // for monitors
 endinterface

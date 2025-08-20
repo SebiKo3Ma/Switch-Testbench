@@ -13,7 +13,6 @@ interface output_if(clk_rst_if clk_if);
         input port_out, port_ready, port_read;
     endclocking
 
-    modport dut_mp (output port_out, port_ready, input port_read); // for DUT
     modport drv_mp (clocking drv_cb);                              // for TB driving
     modport mon_mp (clocking mon_cb);                              // for monitors
 endinterface
