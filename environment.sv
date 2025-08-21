@@ -12,11 +12,11 @@ class environment extends uvm_env;
 
     function build_phase(uvm_phase phase);
         super.build_phase(phase);
-        `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---", UVM_DEBUG));
+        `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---"), UVM_DEBUG);
         rst_agt = rst_agent::type_id::create("rst_agt", this);
         in_agt  =  in_agent::type_id::create("in_agt" , this);
         mem_agt = mem_agent::type_id::create("mem_agt", this);
         out_agt = out_agent::type_id::create("out_agt", this);
-        `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---", UVM_DEBUG));
+        `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);
     endfunction : build_phase
 endclass

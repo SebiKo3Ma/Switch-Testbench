@@ -20,7 +20,7 @@ class rst_driver extends uvm_driver #(rst_transaction);
         vif.drv_cb.rst_n <= 1'd1;
     endtask : do_reset
 
-    task drive_signals(input_transaction trans);
+    task drive_signals(rst_transaction trans);
         vif.drv_cb.rst_n <= trans.rst_n;
     endtask : drive_signals  
 

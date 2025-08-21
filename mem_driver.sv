@@ -23,7 +23,7 @@ class mem_driver extends uvm_driver #(mem_transaction);
         vif.drv_cb.mem_wr_rd_s <= 1'b0;
     endtask : do_reset
 
-    task drive_signals(input_transaction trans);
+    task drive_signals(mem_transaction trans);
         vif.drv_cb.mem_sel_en  <= trans.mem_sel_en;
         vif.drv_cb.mem_addr    <= trans.mem_addr;
         vif.drv_cb.mem_wr_data <= trans.mem_wr_data;

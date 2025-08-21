@@ -20,7 +20,7 @@ class output_driver extends uvm_driver #(output_transaction);
         vif.drv_cb.port_read <= 1'b0;
     endtask : do_reset
 
-    task drive_signals(input_transaction trans);
+    task drive_signals(output_transaction trans);
         vif.drv_cb.port_read <= trans.port_read;
     endtask : drive_signals
 
