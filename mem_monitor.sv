@@ -11,12 +11,12 @@ class mem_monitor extends uvm_monitor;
 
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---", UVM_DEBUG));
+        `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---"), UVM_DEBUG);
         trans = new("trans");
         an_port = new("an_port", this);
         if(!uvm_config_db(virtual mem_if.mon_mp) :: get(this, "", "vif", vif))
             `uvm_fatal(get_type_name(), "Virtual interface not set at top level!");
-        `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---", UVM_DEBUG));
+        `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);
     endfunction : build_phase
 
     task get_signals(mem_transaction trans);
@@ -30,12 +30,12 @@ class mem_monitor extends uvm_monitor;
 
     function void run_phase(uvm_phase phase);
         super.run_phase(phase);
-        `uvm_info(get_name(), $sformatf("--- ENTER PHASE -  RUN  ---", UVM_DEBUG));
+        `uvm_info(get_name(), $sformatf("--- ENTER PHASE -  RUN  ---"), UVM_DEBUG);
         forever begin
             vif.get_signals(trans);
             `uvm_info(get_name(), $sformatf("Monitoring memory transaction: %s", trans.toString()), UVM_FULL);
             an_port.write(trans);
         end
-        `uvm_info(get_name(), $sformatf("---  EXIT PHASE -  RUN  ---", UVM_DEBUG));
+        `uvm_info(get_name(), $sformatf("---  EXIT PHASE -  RUN  ---"), UVM_DEBUG);
     endfunction : run_phase
 endclass

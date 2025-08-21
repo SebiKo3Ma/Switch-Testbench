@@ -12,7 +12,7 @@ class mem_agent extends uvm_agent;
 
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---", UVM_DEBUG));
+        `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---"), UVM_DEBUG);
 
         if(!uvm_config_db(virtual mem_if) :: get(this, "", "vif", vif))
             `uvm_fatal(get_type_name(), "Virtual interface not set at top level!");
@@ -25,13 +25,13 @@ class mem_agent extends uvm_agent;
         mon = mem_monitor::type_id::create("mem_drv", this);
         mon.vif = vif.mon_mp;
 
-        `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---", UVM_DEBUG));
+        `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);
     endfunction : build_phase
 
     function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
-        `uvm_info(get_name(), $sformatf("--- ENTER PHASE - CONNECT ---", UVM_DEBUG));
+        `uvm_info(get_name(), $sformatf("--- ENTER PHASE - CONNECT ---"), UVM_DEBUG);
             drv.seq_item_port.connect(seqr.seq_item_export);
-        `uvm_info(get_name(), $sformatf("---  EXIT PHASE - CONNECT ---", UVM_DEBUG));
+        `uvm_info(get_name(), $sformatf("---  EXIT PHASE - CONNECT ---"), UVM_DEBUG);
     endfunction : connect_phase
 endclass
