@@ -22,7 +22,7 @@ class output_agent extends uvm_agent;
         drv = output_driver::type_id::create("out_drv", this);
         drv.vif = vif.drv_mp;
 
-        mon = output_monitor::type_id::create("out_drv", this);
+        mon = output_monitor::type_id::create("out_mon", this);
         mon.vif = vif.mon_mp;
 
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);

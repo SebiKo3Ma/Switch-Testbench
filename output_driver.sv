@@ -8,13 +8,13 @@ class output_driver extends uvm_driver #(output_transaction);
         super.new(name, parent);
     endfunction : new
 
-    function void build_phase(uvm_phase phase);
-        super.build_phase(phase);
-        `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---"), UVM_DEBUG);
-        if(!uvm_config_db#(virtual output_if.drv_mp) :: get(this, "", "vif", vif))
-            `uvm_fatal(get_type_name(), "Virtual interface not set at top level!");
-        `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);
-    endfunction : build_phase
+    // function void build_phase(uvm_phase phase);
+    //     super.build_phase(phase);
+    //     `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---"), UVM_DEBUG);
+    //     if(!uvm_config_db#(virtual output_if.drv_mp) :: get(this, "", "vif", vif))
+    //         `uvm_fatal(get_type_name(), "Virtual interface not set at top level!");
+    //     `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);
+    // endfunction : build_phase
 
     task do_reset();
         vif.drv_cb.port_read <= 1'b0;

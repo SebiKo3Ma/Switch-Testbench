@@ -22,7 +22,7 @@ class input_agent extends uvm_agent;
         drv = input_driver::type_id::create("in_drv", this);
         drv.vif = vif.drv_mp;
 
-        mon = input_monitor::type_id::create("in_drv", this);
+        mon = input_monitor::type_id::create("in_mon", this);
         mon.vif = vif.mon_mp;
 
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);

@@ -22,7 +22,7 @@ class mem_agent extends uvm_agent;
         drv = mem_driver::type_id::create("mem_drv", this);
         drv.vif = vif.drv_mp;
 
-        mon = mem_monitor::type_id::create("mem_drv", this);
+        mon = mem_monitor::type_id::create("mem_mon", this);
         mon.vif = vif.mon_mp;
 
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);

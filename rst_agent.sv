@@ -22,7 +22,7 @@ class rst_agent extends uvm_agent;
         drv = rst_driver::type_id::create("rst_drv", this);
         drv.vif = vif.drv_mp;
 
-        mon = rst_monitor::type_id::create("rst_drv", this);
+        mon = rst_monitor::type_id::create("rst_mon", this);
         mon.vif = vif.mon_mp;
 
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);

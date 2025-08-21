@@ -1,6 +1,7 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-import testbench_pkg::*;
+
+`include "test.sv"
 `include "input_if.sv"
 `include "mem_if.sv"
 `include "output_if.sv"
@@ -59,13 +60,17 @@ module testbench;
     end
 
     initial begin
-        uvm_config_db#(virtual clk_rst_if)::set(null, "uvm_test_top.env.rst_agt", "vif", clk_vif);
-        uvm_config_db#(virtual input_if)::set(null, "uvm_test_top.env.in_agt", "vif", in_vif);
-        uvm_config_db#(virtual mem_if)::set(null, "uvm_test_top.env.mem_agt", "vif", mem_vif);
-        uvm_config_db#(virtual output_if)::set(null, "uvm_test_top.env.out_agt0", "vif", out_vif0);
-        uvm_config_db#(virtual output_if)::set(null, "uvm_test_top.env.out_agt1", "vif", out_vif1);
-        uvm_config_db#(virtual output_if)::set(null, "uvm_test_top.env.out_agt2", "vif", out_vif2);
-        uvm_config_db#(virtual output_if)::set(null, "uvm_test_top.env.out_agt3", "vif", out_vif3);
+        uvm_config_db#(virtual clk_rst_if)::set(null, "uvm_test_top.env.rst_agt*", "vif", clk_vif);
+        uvm_config_db#(virtual input_if)::set(null, "uvm_test_top.env.in_agt*", "vif", in_vif);
+        uvm_config_db#(virtual mem_if)::set(null, "uvm_test_top.env.mem_agt*", "vif", mem_vif);
+        uvm_config_db#(virtual output_if)::set(null, "uvm_test_top.env.out_agt0*", "vif", out_vif0);
+        uvm_config_db#(virtual output_if)::set(null, "uvm_test_top.env.out_agt1*", "vif", out_vif1);
+        uvm_config_db#(virtual output_if)::set(null, "uvm_test_top.env.out_agt2*", "vif", out_vif2);
+        uvm_config_db#(virtual output_if)::set(null, "uvm_test_top.env.out_agt3*", "vif", out_vif3);
+    end
+
+    initial begin
+        run_test("test");
     end
 
     initial begin
