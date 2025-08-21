@@ -4,7 +4,6 @@ package mem_pkg;
 
     `include "mem_transaction.sv"
     `include "mem_sequencer.sv"
-    `include "master_driver.sv"
     `include "mem_driver.sv"
     `include "mem_monitor.sv"
     `include "mem_agent.sv"
