@@ -14,7 +14,7 @@ class input_agent extends uvm_agent;
         super.build_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---"), UVM_DEBUG);
 
-        if(!uvm_config_db(virtual input_if) :: get(this, "", "vif", vif))
+        if(!uvm_config_db#(virtual input_if) :: get(this, "", "vif", vif))
             `uvm_fatal(get_type_name(), "Virtual interface not set at top level!");
 
         seqr = input_sequencer::type_id::create("in_seqr", this);
