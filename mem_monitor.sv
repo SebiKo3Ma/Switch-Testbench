@@ -12,7 +12,7 @@ class mem_monitor extends uvm_monitor;
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---"), UVM_DEBUG);
-        trans = new("trans");
+        trans = new("trans", this);
         an_port = new("an_port", this);
         if(!uvm_config_db#(virtual mem_if.mon_mp) :: get(this, "", "vif", vif))
             `uvm_fatal(get_type_name(), "Virtual interface not set at top level!");
@@ -28,7 +28,7 @@ class mem_monitor extends uvm_monitor;
         trans.mem_ack     <= vif.mon_cb.mem_ack;
     endtask : get_signals
 
-    function void run_phase(uvm_phase phase);
+    task run_phase(uvm_phase phase);
         super.run_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE -  RUN  ---"), UVM_DEBUG);
         forever begin
@@ -37,5 +37,5 @@ class mem_monitor extends uvm_monitor;
             an_port.write(trans);
         end
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE -  RUN  ---"), UVM_DEBUG);
-    endfunction : run_phase
+    endtask : run_phase
 endclass

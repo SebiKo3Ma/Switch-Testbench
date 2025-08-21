@@ -11,7 +11,7 @@ class input_driver extends uvm_driver #(input_transaction);
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---"), UVM_DEBUG);
-        if(!uvm_config_db#(input_if.drv_mp) :: get(this, "", "vif", vif))
+        if(!uvm_config_db#(virtual input_if.drv_mp) :: get(this, "", "vif", vif))
             `uvm_fatal(get_type_name(), "Virtual interface not set at top level!");
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);
     endfunction : build_phase

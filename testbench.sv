@@ -1,4 +1,4 @@
-import uvm_pkg::*
+import uvm_pkg::*;
 `include "uvm_macros.svh"
 import testbench_pkg::*;
 `include "input_if.sv"
@@ -29,7 +29,7 @@ module testbench;
         .port_ready     (out_vif.port_ready),
         .mem_rd_data    (mem_vif.mem_rd_data),
         .mem_ack        (mem_vif.mem_ack)
-    )
+    );
 
     initial begin
         clk_tb = 1'b0;
