@@ -8,15 +8,18 @@ class environment extends uvm_env;
     rst_agent rst_agt;
     input_agent in_agt;
     mem_agent mem_agt;
-    output_agent out_agt;
+    output_agent out_agt0, out_agt1, out_agt2, out_agt3;
 
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---"), UVM_DEBUG);
-        rst_agt =    rst_agent::type_id::create("rst_agt", this);
-        in_agt  =  input_agent::type_id::create("in_agt" , this);
-        mem_agt =    mem_agent::type_id::create("mem_agt", this);
-        out_agt = output_agent::type_id::create("out_agt", this);
+        rst_agt  =    rst_agent::type_id::create("rst_agt", this);
+        in_agt   =  input_agent::type_id::create("in_agt" , this);
+        mem_agt  =    mem_agent::type_id::create("mem_agt", this);
+        out_agt0 = output_agent::type_id::create("out_agt0", this);
+        out_agt1 = output_agent::type_id::create("out_agt1", this);
+        out_agt2 = output_agent::type_id::create("out_agt2", this);
+        out_agt3 = output_agent::type_id::create("out_agt3", this);
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);
     endfunction : build_phase
 endclass

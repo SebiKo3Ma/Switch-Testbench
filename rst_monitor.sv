@@ -27,7 +27,7 @@ class rst_monitor extends uvm_monitor;
         super.run_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE -  RUN  ---"), UVM_DEBUG);
         forever begin
-            vif.get_signals(trans);
+            get_signals(trans);
             `uvm_info(get_name(), $sformatf("Monitoring reset transaction: %s", trans.toString()), UVM_FULL);
             an_port.write(trans);
         end
