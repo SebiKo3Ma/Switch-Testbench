@@ -1,6 +1,10 @@
 import uvm_pkg::*
 `include "uvm_macros.svh"
 import testbench_pkg::*;
+`include "input_if.sv"
+`include "mem_if.sv"
+`include "output_if.sv"
+`include "clk_rst_if.sv"
 
 module testbench;
     bit clk_tb;
