@@ -1,5 +1,5 @@
 class master_driver #(type TRANS = uvm_sequence_item, type VIF = virtual interface) extends uvm_driver #(TRANS);
-    `uvm_object_utils(master_driver #(TRANS, VIF))
+    `uvm_component_utils(master_driver #(TRANS, VIF))
 
     VIF vif;
     TRANS trans;

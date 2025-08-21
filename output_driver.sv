@@ -1,5 +1,5 @@
 class output_driver extends master_driver #(output_transaction, virtual output_if.drv_mp);
-    `uvm_object_utils(output_driver)
+    `uvm_component_utils(output_driver)
 
     function new(string name, uvm_component parent);
         super.new(name, parent);

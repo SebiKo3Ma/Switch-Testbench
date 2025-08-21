@@ -1,5 +1,5 @@
 class rst_driver extends master_driver #(rst_transaction, virtual clk_rst_if.drv_mp);
-    `uvm_object_utils(rst_driver)
+    `uvm_component_utils(rst_driver)
 
     function new(string name, uvm_component parent);
         super.new(name, parent);

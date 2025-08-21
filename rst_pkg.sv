@@ -4,6 +4,7 @@ package rst_pkg;
 
     `include "rst_transaction.sv"
     `include "rst_sequencer.sv"
+    `include "master_driver.sv"
     `include "rst_driver.sv"
     `include "rst_monitor.sv"
     `include "rst_agent.sv"

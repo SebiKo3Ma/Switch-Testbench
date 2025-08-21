@@ -1,5 +1,5 @@
 class rst_transaction extends uvm_sequence_item;
-    `uvm_object_utils(rst_transaction)
+    `uvm_component_utils(rst_transaction)
 
     logic rst_n;
 

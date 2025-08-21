@@ -4,6 +4,7 @@ package output_pkg;
 
     `include "output_transaction.sv"
     `include "output_sequencer.sv"
+    `include "master_driver.sv"
     `include "output_driver.sv"
     `include "output_monitor.sv"
     `include "output_agent.sv"

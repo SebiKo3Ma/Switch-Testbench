@@ -1,5 +1,5 @@
 class input_driver extends master_driver #(input_transaction, virtual input_if.drv_mp);
-    `uvm_object_utils(input_driver)
+    `uvm_component_utils(input_driver)
 
     function new(string name, uvm_component parent);
         super.new(name, parent);
