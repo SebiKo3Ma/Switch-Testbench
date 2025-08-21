@@ -12,7 +12,7 @@ class input_monitor extends uvm_monitor;
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---"), UVM_DEBUG);
-        trans = new("trans", this);
+        trans = new("trans");
         an_port = new("an_port", this);
         if(!uvm_config_db#(virtual input_if.mon_mp) :: get(this, "", "vif", vif))
             `uvm_fatal(get_type_name(), "Virtual interface not set at top level!");

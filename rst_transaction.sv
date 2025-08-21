@@ -1,10 +1,10 @@
 class rst_transaction extends uvm_sequence_item;
-    `uvm_component_utils(rst_transaction)
+    `uvm_object_utils(rst_transaction)
 
     logic rst_n;
 
-    function new(string name, uvm_component parent);
-        super.new(name, parent);
+    function new(string name = "rst_trans");
+        super.new(name);
     endfunction : new
 
     function string toString();

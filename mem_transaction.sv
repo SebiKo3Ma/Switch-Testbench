@@ -1,5 +1,5 @@
 class mem_transaction extends uvm_sequence_item;
-    `uvm_component_utils(mem_transaction)
+    `uvm_object_utils(mem_transaction)
 
     rand logic       mem_sel_en;
     rand logic [7:0] mem_addr;
@@ -8,8 +8,8 @@ class mem_transaction extends uvm_sequence_item;
     rand logic       mem_wr_rd_s;
          logic       mem_ack;
 
-    function new(string name, uvm_component parent);
-        super.new(name, parent);
+    function new(string name = "mem_trans");
+        super.new(name);
     endfunction : new
 
     function string toString();

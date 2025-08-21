@@ -1,12 +1,12 @@
 class output_transaction extends uvm_sequence_item;
-    `uvm_component_utils(output_transaction)
+    `uvm_object_utils(output_transaction)
 
          logic [7:0] port_out;
          logic       port_ready;
     rand logic       port_read;
 
-    function new(string name, uvm_component parent);
-        super.new(name, parent);
+    function new(string name = "out_trans");
+        super.new(name);
     endfunction : new
 
     function string toString();
