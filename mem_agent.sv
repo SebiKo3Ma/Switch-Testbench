@@ -10,7 +10,7 @@ class mem_agent extends uvm_agent;
     mem_sequencer seqr;
     virtual mem_if vif;
 
-    function void build_phase(uvm_phase phase)
+    function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---", UVM_DEBUG));
 

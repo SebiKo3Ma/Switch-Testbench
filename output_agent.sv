@@ -10,7 +10,7 @@ class output_agent extends uvm_agent;
     output_sequencer seqr;
     virtual output_if vif;
 
-    function void build_phase(uvm_phase phase)
+    function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---", UVM_DEBUG));
 

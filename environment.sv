@@ -1,7 +1,7 @@
 class environment extends uvm_env;
     `uvm_component_utils(environment)
 
-    function new(string name, uvm_component parent)
+    function new(string name, uvm_component parent);
         super.new(name, parent);
     endfunction : new
 

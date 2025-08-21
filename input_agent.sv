@@ -10,7 +10,7 @@ class input_agent extends uvm_agent;
     input_sequencer seqr;
     virtual input_if vif;
 
-    function void build_phase(uvm_phase phase)
+    function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---", UVM_DEBUG));
 

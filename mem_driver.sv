@@ -1,7 +1,7 @@
 class mem_driver extends master_driver #(mem_transaction, virtual mem_if.drv_mp);
     `uvm_object_utils(mem_driver)
 
-    function new(string name, uvm_component parent)
+    function new(string name, uvm_component parent);
         super.new(name, parent);
     endfunction : new
 

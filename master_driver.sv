@@ -4,7 +4,7 @@ class master_driver #(type TRANS = uvm_sequence_item, type VIF = virtual interfa
     VIF vif;
     TRANS trans;
 
-    function new(string name, uvm_component parent)
+    function new(string name, uvm_component parent);
         super.new(name, parent);
     endfunction : new
 
@@ -24,7 +24,7 @@ class master_driver #(type TRANS = uvm_sequence_item, type VIF = virtual interfa
         `uvm_fatal(get_type_name(), "drive_signals() not implemented in child driver!");
     endtask : drive_signals
 
-    task run_phase(uvm_phase phase)
+    task run_phase(uvm_phase phase);
         super.run_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - RESET ---", UVM_DEBUG));
         phase.raise_objection(this);

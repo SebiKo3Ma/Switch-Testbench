@@ -10,7 +10,7 @@ class rst_agent extends uvm_agent;
     rst_sequencer seqr;
     virtual rst_if vif;
 
-    function void build_phase(uvm_phase phase)
+    function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---", UVM_DEBUG));
 
