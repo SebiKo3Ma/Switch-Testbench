@@ -37,10 +37,10 @@ module testbench;
     end
 
     initial begin
-        uvm_config_db#(virtual clk_rst_if)::set(null, "uvm_test_top.env.rst_agt", "vif", vif);
-        uvm_config_db#(virtual input_if)::set(null, "uvm_test_top.env.in_agt", "vif", vif);
-        uvm_config_db#(virtual mem_if)::set(null, "uvm_test_top.env.mem_agt", "vif", vif);
-        uvm_config_db#(virtual output_if)::set(null, "uvm_test_top.env.out_agt", "vif", vif);
+        uvm_config_db#(virtual clk_rst_if)::set(null, "uvm_test_top.env.rst_agt", "vif", clk_vif);
+        uvm_config_db#(virtual input_if)::set(null, "uvm_test_top.env.in_agt", "vif", in_vif);
+        uvm_config_db#(virtual mem_if)::set(null, "uvm_test_top.env.mem_agt", "vif", mem_vif);
+        uvm_config_db#(virtual output_if)::set(null, "uvm_test_top.env.out_agt", "vif", out_vif);
     end
 
     initial begin
