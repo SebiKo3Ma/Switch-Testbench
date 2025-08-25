@@ -2,10 +2,10 @@ package rst_pkg;
     import uvm_pkg::*;
     `include "uvm_macros.svh"
 
-    `include "rst_transaction.sv"
-    `include "rst_sequencer.sv"
-    `include "rst_driver.sv"
-    `include "rst_monitor.sv"
-    `include "rst_agent.sv"
+    `include "transactions/rst_transaction.sv"
+    `include "sequencers/rst_sequencer.sv"
+    `include "drivers/rst_driver.sv"
+    `include "monitors/rst_monitor.sv"
+    `include "agents/rst_agent.sv"
 
 endpackage : rst_pkg

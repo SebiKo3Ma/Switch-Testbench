@@ -1,4 +1,4 @@
-DUT/switch_top.v
+0.DUT/switch_top.v
 rst_pkg.sv
 input_pkg.sv
 mem_pkg.sv
