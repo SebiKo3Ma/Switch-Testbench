@@ -34,6 +34,7 @@ class output_driver extends uvm_driver #(output_transaction);
 
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - MAIN  ---"), UVM_DEBUG);
         forever begin
+            @vif.drv_cb
             seq_item_port.get_next_item(trans);
             `uvm_info(get_name(), $sformatf("Driving input transaction: %s", trans.toString), UVM_HIGH);
             drive_signals(trans);

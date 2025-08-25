@@ -1,11 +1,13 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
 import testbench_pkg::*;
+`include "input_sequence.sv"
 
 class test extends uvm_test;
     `uvm_component_utils(test)
 
     environment env;
+    input_sequence seq;
 
     function new(string name, uvm_component parent);
         super.new(name, parent);
@@ -15,6 +17,7 @@ class test extends uvm_test;
     super.build_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---"), UVM_DEBUG);
         env = environment::type_id::create("env", this); 
+        seq = input_sequence::type_id::create("seq");
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);
     endfunction : build_phase
     
@@ -29,7 +32,7 @@ class test extends uvm_test;
         phase.phase_done.set_drain_time(this, 20ns);
 
         phase.raise_objection(this);
-        // seq.start(env.agt.seqr);
+        seq.start(env.in_agt.seqr);
         phase.drop_objection(this);  
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - MAIN ---"), UVM_DEBUG);  
     endtask : main_phase

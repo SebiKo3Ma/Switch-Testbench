@@ -29,6 +29,7 @@ class input_monitor extends uvm_monitor;
         super.run_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE -  RUN  ---"), UVM_DEBUG);
         forever begin
+            @vif.mon_cb
             get_signals(trans);
             `uvm_info(get_name(), $sformatf("Monitoring input transaction: %s", trans.toString()), UVM_FULL);
             an_port.write(trans);
