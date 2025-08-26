@@ -14,8 +14,6 @@ class output_monitor extends uvm_monitor;
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---"), UVM_DEBUG);
         trans = new("trans");
         an_port = new("an_port", this);
-        // if(!uvm_config_db#(virtual output_if.mon_mp) :: get(this, "", "vif", vif))
-        //     `uvm_fatal(get_type_name(), "Virtual interface not set at top level!");
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);
     endfunction : build_phase
 
