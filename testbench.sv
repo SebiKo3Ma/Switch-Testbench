@@ -2,21 +2,23 @@ import uvm_pkg::*;
 `include "uvm_macros.svh"
 
 `include "test.sv"
+`include "interfaces/clk_if.sv"
 `include "interfaces/input_if.sv"
 `include "interfaces/mem_if.sv"
 `include "interfaces/output_if.sv"
-`include "interfaces/clk_rst_if.sv"
+`include "interfaces/rst_if.sv"
 
 module testbench;
     bit clk_tb;
 
-    clk_rst_if clk_vif(clk_tb);
+    clk_if clk_vif(clk_tb);
     input_if in_vif(clk_vif);
     mem_if mem_vif(clk_vif);
     output_if out_vif0(clk_vif);
     output_if out_vif1(clk_vif);
     output_if out_vif2(clk_vif);
     output_if out_vif3(clk_vif);
+    rst_if rst_vif(clk_vif);
 
     wire  [3:0] port_ready_wire, port_read_wire;
     wire [31:0] port_out_wire;
@@ -39,7 +41,7 @@ module testbench;
 
     switch_top DUT(
         .clk            (clk_vif.clk),
-        .rst_n          (clk_vif.rst_n),
+        .rst_n          (rst_vif.rst_n),
         .data_in        (in_vif.data_in),
         .sw_enable_in   (in_vif.sw_enable_in),
         .port_read      (port_read_wire),
@@ -60,7 +62,7 @@ module testbench;
     end
 
     initial begin
-        uvm_config_db#(virtual clk_rst_if)::set(null, "uvm_test_top.env.rst_agt*", "vif", clk_vif);
+        uvm_config_db#(virtual rst_if)::set(null, "uvm_test_top.env.rst_agt*", "vif", rst_vif);
         uvm_config_db#(virtual input_if)::set(null, "uvm_test_top.env.in_agt*", "vif", in_vif);
         uvm_config_db#(virtual mem_if)::set(null, "uvm_test_top.env.mem_agt*", "vif", mem_vif);
         uvm_config_db#(virtual output_if)::set(null, "uvm_test_top.env.out_agt0*", "vif", out_vif0);

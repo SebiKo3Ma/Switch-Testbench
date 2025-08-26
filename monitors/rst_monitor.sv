@@ -5,7 +5,7 @@ class rst_monitor extends uvm_monitor;
         super.new(name, parent);
     endfunction : new
 
-    virtual clk_rst_if.mon_mp vif;
+    virtual rst_if.mon_mp vif;
     uvm_analysis_port #(rst_transaction) an_port;
     rst_transaction trans;
 

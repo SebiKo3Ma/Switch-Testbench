@@ -2,7 +2,7 @@ class rst_driver extends uvm_driver #(rst_transaction);
     `uvm_component_utils(rst_driver)
 
     rst_transaction trans;
-    virtual clk_rst_if.drv_mp vif;
+    virtual rst_if.drv_mp vif;
 
     function new(string name, uvm_component parent);
         super.new(name, parent);

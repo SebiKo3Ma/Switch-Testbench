@@ -1,4 +1,4 @@
-interface output_if(clk_rst_if clk_if);
+interface output_if(clk_if clk_if);
     logic [7:0] port_out;   //serial 1-byte data output
     logic       port_ready; //ready signal for data output
     logic       port_read;  //read input signal for output port
