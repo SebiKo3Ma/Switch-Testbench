@@ -1,14 +1,14 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
 import testbench_pkg::*;
-`include "input_sequence.sv"
+`include "seq_packet_send_valid.sv"
 `include "rst_sequence.sv"
 
 class test extends uvm_test;
     `uvm_component_utils(test)
 
     environment env;
-    input_sequence in_seq;
+    seq_packet_send_valid in_seq;
     rst_sequence rst_seq;
 
     function new(string name, uvm_component parent);
@@ -19,7 +19,7 @@ class test extends uvm_test;
     super.build_phase(phase);
         `uvm_info(get_name(), $sformatf("--- ENTER PHASE - BUILD ---"), UVM_DEBUG);
         env = environment::type_id::create("env", this); 
-        in_seq = input_sequence::type_id::create("in_seq");
+        in_seq = seq_packet_send_valid::type_id::create("in_seq");
         rst_seq = rst_sequence::type_id::create("rst_seq");
 
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);
