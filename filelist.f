@@ -1,4 +1,4 @@
-0.DUT/switch_top.v
+../unit-simple-switch-v2-design/design/source/switch_top.v
 rst_pkg.sv
 input_pkg.sv
 mem_pkg.sv
