@@ -3,6 +3,7 @@ package mem_pkg;
     `include "uvm_macros.svh"
 
     `include "transactions/mem_transaction.sv"
+    `include "transactions/mem_set_valid.sv"
     `include "sequencers/mem_sequencer.sv"
     `include "drivers/mem_driver.sv"
     `include "monitors/mem_monitor.sv"

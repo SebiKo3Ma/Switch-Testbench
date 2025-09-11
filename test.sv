@@ -3,6 +3,7 @@ import uvm_pkg::*;
 import testbench_pkg::*;
 `include "seq_packet_send_valid.sv"
 `include "rst_sequence.sv"
+`include "mem_sequence.sv"
 
 class test extends uvm_test;
     `uvm_component_utils(test)
@@ -10,6 +11,7 @@ class test extends uvm_test;
     environment env;
     seq_packet_send_valid in_seq;
     rst_sequence rst_seq;
+    mem_sequence mem_seq;
 
     function new(string name, uvm_component parent);
         super.new(name, parent);
@@ -21,6 +23,7 @@ class test extends uvm_test;
         env = environment::type_id::create("env", this); 
         in_seq = seq_packet_send_valid::type_id::create("in_seq");
         rst_seq = rst_sequence::type_id::create("rst_seq");
+        mem_seq = mem_sequence::type_id::create("mem_seq");
 
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);
     endfunction : build_phase
@@ -36,10 +39,10 @@ class test extends uvm_test;
         phase.phase_done.set_drain_time(this, 20ns);
 
         phase.raise_objection(this);
-        fork
+        
             rst_seq.start(env.rst_agt.seqr);
+            mem_seq.start(env.mem_agt.seqr);
             in_seq.start(env.in_agt.seqr);
-        join
         phase.drop_objection(this);  
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - MAIN ---"), UVM_DEBUG);  
     endtask : main_phase

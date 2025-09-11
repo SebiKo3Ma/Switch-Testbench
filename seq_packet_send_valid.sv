@@ -28,21 +28,27 @@ class seq_packet_send_valid extends uvm_sequence #(input_byte_valid);
     assert(randomize()); //randomize DL
     `uvm_info(get_name(), $sformatf("Start sending a valid packet"), UVM_LOW);
 
-    //random byte before start with sw_enable_in set to 1
-    trans.randomize();
-    send_item(trans);
+    //random byte with sw_enable_in set to 0
+    // trans.randomize();
+    // trans.sw_enable_in = 8'h0;
+    // send_item(trans);
+
+    // //random byte before start with sw_enable_in set to 1
+    // trans.randomize();
+    // send_item(trans);
 
     //send SOF
+    trans.randomize();
     trans.data_in = 8'hFF;
     send_item(trans);
 
     //send DA
-    trans.data_in = 8'h1;
+    trans.data_in = 8'h12;
     send_item(trans);
 
-    //send SA
-    trans.data_in = 8'h0;
-    send_item(trans);
+    // //send SA
+    // trans.data_in = 8'h0;
+    // send_item(trans);
 
     //send DL
     trans.data_in = DL;
@@ -57,11 +63,12 @@ class seq_packet_send_valid extends uvm_sequence #(input_byte_valid);
 
     //send parity
     trans.data_in = parity;
+    trans.sw_enable_in = 8'h0;
     send_item(trans);
 
     //send EOF
     trans.data_in = 8'h55;
-    trans.sw_enable_in = 8'h0;
     send_item(trans);
+
   endtask : body  
 endclass : seq_packet_send_valid
