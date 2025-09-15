@@ -1,5 +1,5 @@
-class mem_set_valid extends mem_transaction;
-    `uvm_object_utils(mem_set_valid)
+class mem_set_item extends mem_transaction;
+    `uvm_object_utils(mem_set_item)
 
     function new(string name="mem_trans");
         super.new(name);
@@ -10,8 +10,7 @@ class mem_set_valid extends mem_transaction;
     }
 
     constraint valid_address{
-        mem_addr >= 'd0;
-        mem_addr <= 'd3;
+        mem_addr inside {[8'd0:8'd3]};
     }
 
     constraint enabled{
