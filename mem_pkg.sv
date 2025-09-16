@@ -3,7 +3,7 @@ package mem_pkg;
     `include "uvm_macros.svh"
 
     `include "transactions/mem_transaction.sv"
-    `include "transactions/mem_set_item.sv"
+    `include "transactions/mem_write_item.sv"
     `include "transactions/mem_read_item.sv"
     `include "transactions/mem_idle_item.sv"
     `include "sequencers/mem_sequencer.sv"

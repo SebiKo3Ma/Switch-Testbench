@@ -2,14 +2,14 @@ import uvm_pkg::*;
 `include "uvm_macros.svh"
 import mem_pkg::*;
 
-class mem_set_sequence extends uvm_sequence #(mem_transaction);
-  `uvm_object_utils(mem_set_sequence)
+class mem_write_sequence extends uvm_sequence #(mem_transaction);
+  `uvm_object_utils(mem_write_sequence)
     
-  rand mem_set_item set_trans;
+  rand mem_write_item write_trans;
         
-  function new (string name = "mem_set_sequence");
+  function new (string name = "mem_write_sequence");
     super.new(name);
-    set_trans = mem_set_item::type_id::create("set_trans");
+    write_trans = mem_write_item::type_id::create("write_trans");
   endfunction : new
 
   task send_item(mem_transaction trans);
@@ -20,10 +20,6 @@ class mem_set_sequence extends uvm_sequence #(mem_transaction);
 
   task body();
     `uvm_info(get_name(), $sformatf("Start the mem sequence"), UVM_LOW);
-
-    send_item(set_trans);
-    
-    set_trans.mem_sel_en = 1'b0;
-    send_item(set_trans);      
+    send_item(write_trans);  
   endtask : body  
-endclass : mem_set_sequence
+endclass : mem_write_sequence

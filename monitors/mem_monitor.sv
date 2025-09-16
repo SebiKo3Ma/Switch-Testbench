@@ -17,8 +17,7 @@ class mem_monitor extends uvm_monitor;
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - BUILD ---"), UVM_DEBUG);
     endfunction : build_phase
 
-    task get_signals(mem_transaction trans);
-        trans.mem_sel_en  <= vif.mon_cb.mem_sel_en;    
+    task get_signals(mem_transaction trans); 
         trans.mem_addr    <= vif.mon_cb.mem_addr;
         trans.mem_wr_data <= vif.mon_cb.mem_wr_data;
         trans.mem_wr_rd_s <= vif.mon_cb.mem_wr_rd_s;
