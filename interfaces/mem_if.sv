@@ -2,7 +2,7 @@ interface mem_if(clk_if clk_if);
     logic       mem_sel_en;     //enable signal for memory interface
     logic [7:0] mem_addr;       //memory address of the register to be read or configured
     logic [7:0] mem_wr_data;    //address input for port configuration
-    logic [7:0] mem_rd_data;    //address output for port reading
+    logic [31:0] mem_rd_data;    //address output for port reading
     logic       mem_wr_rd_s;    //select between write or read operation
     logic [3:0] mem_ack;        //acknowledge signal for port configuration
 

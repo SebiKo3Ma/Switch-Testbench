@@ -30,13 +30,21 @@ class mem_driver extends uvm_driver #(mem_transaction);
         reset_signals();
         forever begin
             @vif.drv_cb
-            seq_item_port.get_next_item(trans);
-            if(!trans.protocol_invalid) begin
-                `uvm_info(get_name(), $sformatf("Driving input transaction: %s", trans.toString), UVM_HIGH);
-                drive_signals(trans, buffer, 1'b1);
+            seq_item_port.try_next_item(trans);
+            if(trans != null) begin
+                if(!trans.protocol_invalid) begin
+                    `uvm_info(get_name(), $sformatf("Driving input transaction: %s", trans.toString), UVM_HIGH);
+                    drive_signals(trans, buffer, 1'b1);
+                end
+                buffer <= trans.mem_wr_data;
+                seq_item_port.item_done();
+            end else begin
+                vif.drv_cb.mem_sel_en  <= 1'b0;
+                vif.drv_cb.mem_addr    <= 8'd0;;
+                vif.drv_cb.mem_wr_data <= buffer;
+                vif.drv_cb.mem_wr_rd_s <= 1'b0;;
+                buffer <= 8'd0;
             end
-            buffer <= trans.mem_wr_data;
-            seq_item_port.item_done();
         end
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - RUN ---"), UVM_DEBUG);
     endtask : run_phase   

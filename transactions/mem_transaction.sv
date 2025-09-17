@@ -4,7 +4,7 @@ class mem_transaction extends uvm_sequence_item;
     bit protocol_invalid;  
     randc logic [7:0] mem_addr;
     rand logic  [7:0] mem_wr_data;
-         logic  [7:0] mem_rd_data;
+         logic  [31:0] mem_rd_data;
     rand logic        mem_wr_rd_s;
          logic        mem_ack;
 
