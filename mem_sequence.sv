@@ -1,14 +1,17 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
 import mem_pkg::*;
-`include "mem_write_sequence.sv"
 
 class mem_sequence extends uvm_sequence #(mem_transaction);
   `uvm_object_utils(mem_sequence)
+
+  `uvm_declare_p_sequencer(mem_sequencer)
     
-  mem_write_sequence mem_write;  
+  mem_write_item write_trans;  
   mem_read_item read_trans;
-  mem_idle_item idle_trans;
+
+  logic[7:0] data[4], reg_data;
+  int pass = 0, fail = 0;
         
   function new (string name = "mem_sequence");
     super.new(name);
@@ -21,29 +24,74 @@ class mem_sequence extends uvm_sequence #(mem_transaction);
   endtask : send_item
 
   task body();
-    mem_write = mem_write_sequence::type_id::create("mem_write");
     read_trans = mem_read_item::type_id::create("read_trans");
-    idle_trans = mem_idle_item::type_id::create("idle_trans");
+    write_trans = mem_write_item::type_id::create("write_trans");
     `uvm_info(get_name(), $sformatf("Start the mem sequence"), UVM_LOW);
 
-    // for(int i = 0; i < 5; i = i + 1) begin
-    //   read_trans.randomize();
-    //   read_trans.mem_addr = i;
-    //   send_item(read_trans);
-    // end
+    for(int i = 0; i <= 4; i = i + 1) begin
+      read_trans.randomize();
+      read_trans.mem_addr = i;
+      send_item(read_trans);
+      if(i) begin
+        if(p_sequencer.vif.mem_rd_data != 8'd0) begin
+          `uvm_error ("MEM_TEST_CHECKER", $sformatf("Default data from register %0d is incorrect", i))
+          fail = fail + 1;
+        end else begin
+         `uvm_info ("MEM_TEST_CHECKER", $sformatf("Default data from register %0d is correct", i), UVM_LOW)
+         pass = pass + 2;
+        end
+      end
+    end
 
-    repeat(4) begin
-      mem_write.randomize();
-      mem_write.start(m_sequencer);
+    #30
+
+    for(int i = 0; i < 4; i++) begin
+      write_trans.randomize();
+      write_trans.mem_addr = i;
+      send_item(write_trans);
+      data[i] = write_trans.mem_wr_data;
     end
 
     #30;
 
-    for(int i = 0; i < 5; i = i + 1) begin
+    for(int i = 1; i <= 4 ; i++) begin
+      if (! uvm_hdl_read($sformatf("testbench.DUT.genblk1[%0d].DUT_REG.CONF_PORT_REG_DUT.reg_data", i), reg_data))
+			  `uvm_error ("MEM_TEST", $sformatf("Read from reg_data[%0d] failed", i))
+      if(reg_data != data[i-1]) begin
+        `uvm_error ("MEM_TEST_CHECKER", $sformatf("Data from register %0d incorrectly set", i))
+        fail = fail + 1;
+      end else begin 
+        `uvm_info ("MEM_TEST_CHECKER", $sformatf("Data from register %0d correctly set", i), UVM_LOW) 
+        pass = pass + 1;
+      end
+    end
+     
+    #30;
+    for(int i = 1; i <= 4 ; i++) begin
+      if (! uvm_hdl_force($sformatf("testbench.DUT.genblk1[%0d].DUT_REG.CONF_PORT_REG_DUT.reg_data", i), i))
+			  `uvm_error ("MEM_TEST", $sformatf("Force on reg_data[%0d] failed", i))
+      else data[i-1] = i;
+    end
+
+    for(int i = 0; i <= 4; i = i + 1) begin
       read_trans.randomize();
       read_trans.mem_addr = i;
       send_item(read_trans);
+      if(i < 4) begin
+        @p_sequencer.vif.mon_cb
+        if(p_sequencer.vif.mem_rd_data >> (8*i) != data[i]) begin
+          `uvm_error ("MEM_TEST_CHECKER", $sformatf("Read data from register %0d is incorrect: %0d instead of %0d", i, p_sequencer.vif.mem_rd_data >> (8*i), data[i]))
+          fail = fail + 1;
+        end else begin
+         `uvm_info ("MEM_TEST_CHECKER", $sformatf("Read data from register %0d is correct", i), UVM_LOW) 
+         pass = pass + 1;
+        end
+      end
     end
+
+    `uvm_info("MEM_TEST", $sformatf("Checkers passed: %0d, Checkers failed: %0d", pass, fail), UVM_LOW)
+    if(fail) `uvm_info("MEM_TEST", "TEST FAILED", UVM_LOW)
+    else `uvm_info("MEM_TEST", "TEST PASSED", UVM_LOW)
       
   endtask : body  
 endclass : mem_sequence

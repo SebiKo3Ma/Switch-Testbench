@@ -18,6 +18,7 @@ class mem_agent extends uvm_agent;
             `uvm_fatal(get_type_name(), "Virtual interface not set at top level!");
 
         seqr = mem_sequencer::type_id::create("mem_seqr", this);
+        seqr.vif = vif.mon_mp;
 
         drv = mem_driver::type_id::create("mem_drv", this);
         drv.vif = vif.drv_mp;
