@@ -1,6 +1,6 @@
-`include "rst_sequence.sv"
-`include "mem_sequence.sv"
-`include "base_test.sv"
+`include "../rst_agent/rst_sequence.sv"
+`include "../mem_agent/mem_sequence.sv"
+`include "../tests/base_test.sv"
 
 class mem_test extends base_test;
     `uvm_component_utils(mem_test)
