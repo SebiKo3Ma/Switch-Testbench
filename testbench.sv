@@ -1,12 +1,12 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
 
-`include "test.sv"
-`include "interfaces/clk_if.sv"
-`include "interfaces/input_if.sv"
-`include "interfaces/mem_if.sv"
-`include "interfaces/output_if.sv"
-`include "interfaces/rst_if.sv"
+`include "tests/mem_test.sv"
+`include "clk_if.sv"
+`include "input_agent/input_if.sv"
+`include "mem_agent/mem_if.sv"
+`include "output_agent/output_if.sv"
+`include "rst_agent/rst_if.sv"
 
 module testbench;
     bit clk_tb;
@@ -72,7 +72,7 @@ module testbench;
     end
 
     initial begin
-        run_test("test");
+        run_test("mem_test");
     end
 
     initial begin

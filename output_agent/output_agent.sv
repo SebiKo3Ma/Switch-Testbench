@@ -17,10 +17,12 @@ class output_agent extends uvm_agent;
         if(!uvm_config_db#(virtual output_if) :: get(this, "", "vif", vif))
             `uvm_fatal(get_type_name(), "Virtual interface not set at top level!");
 
-        seqr = output_sequencer::type_id::create("out_seqr", this);
+        if(this.get_is_active() == UVM_ACTIVE) begin
+            seqr = output_sequencer::type_id::create("out_seqr", this);
 
-        drv = output_driver::type_id::create("out_drv", this);
-        drv.vif = vif.drv_mp;
+            drv = output_driver::type_id::create("out_drv", this);
+            drv.vif = vif.drv_mp;
+        end
 
         mon = output_monitor::type_id::create("out_mon", this);
         mon.vif = vif.mon_mp;
