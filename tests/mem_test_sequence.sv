@@ -2,8 +2,8 @@ import uvm_pkg::*;
 `include "uvm_macros.svh"
 import mem_pkg::*;
 
-class mem_sequence extends uvm_sequence #(mem_transaction);
-  `uvm_object_utils(mem_sequence)
+class mem_test_sequence extends uvm_sequence #(mem_transaction);
+  `uvm_object_utils(mem_test_sequence)
 
   `uvm_declare_p_sequencer(mem_sequencer)
     
@@ -13,7 +13,7 @@ class mem_sequence extends uvm_sequence #(mem_transaction);
   logic[7:0] data[4], reg_data;
   int pass = 0, fail = 0;
         
-  function new (string name = "mem_sequence");
+  function new (string name = "mem_test_sequence");
     super.new(name);
   endfunction : new
 
@@ -94,4 +94,4 @@ class mem_sequence extends uvm_sequence #(mem_transaction);
     else `uvm_info("MEM_TEST", "TEST PASSED", UVM_LOW)
       
   endtask : body  
-endclass : mem_sequence
+endclass : mem_test_sequence
