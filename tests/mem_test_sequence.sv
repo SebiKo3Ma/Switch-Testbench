@@ -17,21 +17,29 @@ class mem_test_sequence extends uvm_sequence #(mem_transaction);
     super.new(name);
   endfunction : new
 
-  task send_item(mem_transaction trans);
-    start_item(trans);
+  task send_item(mem_transaction trans, logic [7:0] addr = 8'hXX, logic [7:0] wr_data = 8'hXX);
+
+  if(!trans.randomize()) `uvm_error("MEM_TEST_SEQ", "Failed to randomize transaction")
+
+  if(addr !== 8'hXX) trans.mem_addr = addr;
+
+  if(wr_data !== 8'hXX) trans.mem_wr_data = wr_data;
+
+  start_item(trans);
     `uvm_info(get_name(), $sformatf("Create item trans: %s", trans.toString), UVM_FULL);
-    finish_item(trans);
-  endtask : send_item
+  finish_item(trans);
+endtask
+
 
   task body();
     read_trans = mem_read_item::type_id::create("read_trans");
     write_trans = mem_write_item::type_id::create("write_trans");
     `uvm_info(get_name(), $sformatf("Start the mem sequence"), UVM_LOW);
 
+    //read and check register default data
     for(int i = 0; i <= 4; i = i + 1) begin
-      read_trans.randomize();
-      read_trans.mem_addr = i;
-      send_item(read_trans);
+      send_item(read_trans, i);
+
       if(i) begin
         if(p_sequencer.vif.mem_rd_data != 8'd0) begin
           `uvm_error ("MEM_TEST_CHECKER", $sformatf("Default data from register %0d is incorrect", i))
@@ -46,9 +54,7 @@ class mem_test_sequence extends uvm_sequence #(mem_transaction);
     #30
 
     for(int i = 0; i < 4; i++) begin
-      write_trans.randomize();
-      write_trans.mem_addr = i;
-      send_item(write_trans);
+      send_item(write_trans, i);
       data[i] = write_trans.mem_wr_data;
     end
 
@@ -74,9 +80,7 @@ class mem_test_sequence extends uvm_sequence #(mem_transaction);
     end
 
     for(int i = 0; i <= 4; i = i + 1) begin
-      read_trans.randomize();
-      read_trans.mem_addr = i;
-      send_item(read_trans);
+      send_item(read_trans, i);
       if(i < 4) begin
         @p_sequencer.vif.mon_cb
         if(p_sequencer.vif.mem_rd_data >> (8*i) != data[i]) begin
