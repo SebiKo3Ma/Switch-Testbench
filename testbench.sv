@@ -2,6 +2,7 @@ import uvm_pkg::*;
 `include "uvm_macros.svh"
 
 `include "tests/mem_test.sv"
+`include "tests/mem_crt_test.sv"
 `include "clk_if.sv"
 `include "input_agent/input_if.sv"
 `include "mem_agent/mem_if.sv"
@@ -72,7 +73,7 @@ module testbench;
     end
 
     initial begin
-        run_test("mem_test");
+        run_test("mem_crt_test");
     end
 
     initial begin

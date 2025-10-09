@@ -1,3 +1,6 @@
+`ifndef base_test
+`define base_test
+
 import uvm_pkg::*;
 `include "uvm_macros.svh"
 import testbench_pkg::*;
@@ -35,3 +38,4 @@ virtual class base_test extends uvm_test;
         `uvm_info(get_name(), $sformatf("---  EXIT PHASE - RESET ---"), UVM_DEBUG);  
     endtask : reset_phase
 endclass
+`endif

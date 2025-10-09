@@ -2,11 +2,11 @@ class mem_transaction extends uvm_sequence_item;
     `uvm_object_utils(mem_transaction)
 
     bit protocol_invalid;  
-    randc logic [7:0] mem_addr;
-    rand logic  [7:0] mem_wr_data;
+    randc logic [7:0]  mem_addr;
+    rand logic  [7:0]  mem_wr_data;
          logic  [31:0] mem_rd_data;
-    rand logic        mem_wr_rd_s;
-         logic        mem_ack;
+    rand logic         mem_wr_rd_s;
+         logic  [3:0]  mem_ack;
 
     function new(string name = "mem_trans");
         super.new(name);
@@ -14,7 +14,7 @@ class mem_transaction extends uvm_sequence_item;
     endfunction : new
 
     function string toString();
-        return $sformatf("%3t - mem_addr: %8b, mem_wr_data: %8b, mem_wr_rd_s: %1b, mem_rd_data: %8b, mem_ack: %1b", 
+        return $sformatf("%3t - mem_addr: %8b, mem_wr_data: %8b, mem_wr_rd_s: %1b, mem_rd_data: %h, mem_ack: %4b", 
                $time, mem_addr, mem_wr_data, mem_wr_rd_s, mem_rd_data, mem_ack);
     endfunction : toString
 
