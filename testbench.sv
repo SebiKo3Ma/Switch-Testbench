@@ -70,6 +70,7 @@ module testbench;
         uvm_config_db#(virtual output_if)::set(null, "uvm_test_top.env.out_agt1*", "vif", out_vif1);
         uvm_config_db#(virtual output_if)::set(null, "uvm_test_top.env.out_agt2*", "vif", out_vif2);
         uvm_config_db#(virtual output_if)::set(null, "uvm_test_top.env.out_agt3*", "vif", out_vif3);
+        uvm_config_db#(virtual mem_if)::set(null, "uvm_test_top.env", "vif", mem_vif);
     end
 
     initial begin

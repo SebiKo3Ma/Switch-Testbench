@@ -6,7 +6,7 @@ class mem_monitor extends uvm_monitor;
     endfunction : new
 
     virtual mem_if.mon_mp vif;
-    uvm_analysis_port #(mem_transaction) an_port;
+    uvm_analysis_port #(uvm_sequence_item) an_port;
     mem_transaction trans;
 
     function void build_phase(uvm_phase phase);
